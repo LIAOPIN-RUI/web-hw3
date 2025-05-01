@@ -1,6 +1,6 @@
 function handlePhishing(e) {
     e.preventDefault();
-    alert("這是一個模擬釣魚頁面，請勿輸入真實帳號密碼。此為資安訓練用，提醒您注意登入頁真偽！");
+    alert("登入測試");
 }
 
 function generateCaptcha() {
