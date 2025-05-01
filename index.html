@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>模擬登入頁面 - 資安訓練</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="logo-block">
+            <div class="logo-left">
+                <div class="zh-title">元大銀行</div>
+                <div class="en-title">Yuanta Bank</div>
+            </div>
+            <div class="logo-right">大眾的專業銀行</div>
+        </div>
+        <div class="header-center">個人網路銀行</div>
+        <div class="header-right">
+            <button class="icon-button"><img src="globe.png" alt="語言"></button>
+            <button class="icon-button"><img src="search.png" alt="搜尋"></button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="login-container">
+            <div class="logo">元大銀行 Yuanta Bank</div>
+            <h3>網銀登入</h3>
+            <form onsubmit="handlePhishing(event)">
+                <input type="text" placeholder="身分證字號" required>
+                <input type="text" placeholder="使用者代號" required>
+                <input type="password" placeholder="使用者密碼" required>
+
+                <div class="captcha-box">
+                    <input type="text" placeholder="圖形驗證碼" required>
+                    <div class="captcha-img" id="captcha">------</div>
+                    <button type="button" class="refresh-btn" onclick="generateCaptcha()">↻</button>
+                </div>
+
+                <button class="login-btn">登入</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-buttons">
+            <button>網路銀行服務說明</button>
+            <button>服務約定事項</button>
+            <button onclick="openModal()">金融卡登入說明</button>
+            <button>行動銀行</button>
+            <button>無障礙網銀</button>
+            <button>元大e櫃檯</button>
+            <button>客服專區</button>
+            <button>智能客服</button>
+        </div>
+
+        <div class="footer-middle">
+            隱私權保護聲明 | 客戶資料保密措施 | 宣導連結<br>
+            為提供您更好、更個人化的服務，本網站採用網站追蹤工具（包含但不限於Cookies等）來優化使用者體驗。<br>
+            若您繼續瀏覽本網站，即表示您同意我們使用Cookies技術。更多相關資訊請參閱隱私權保護聲明。
+        </div>
+
+        <div class="footer-bottom">
+            地址：106台北市大安區仁愛路三段157號　電子信箱：service@yuanta.com<br>
+            客服專線：0800-688-168　營業人：元大商業銀行股份有限公司　營利事業統一編號：86517315
+        </div>
+    </footer>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3>金融卡登入網路銀行服務說明</h3>
+        <p>一、為提升您的網路銀行交易安全等級，建議您持本人之元大銀行晶片金融卡進行網路銀行登入。</p>
+        <p>二、使用前請先正確安裝晶片讀卡機及本行Super ATM元件（<a href="#">常見問題</a>）。</p>
+        <p>三、開啟晶片金融卡登入服務：登入個人網路銀行後，至「申辦專區-晶片金融卡功能設定-晶片金融卡登入網路銀行服務」使用您本人之元大銀行晶片金融卡申請開啟服務。</p>
+        <p>四、同上。</p>
+        <p>五、若晶片金融卡有未啟用、掛失、停用、鎖卡、或其他狀態異常等情事，則將無法登入本行網路銀行，讓您使用更安心。</p>
+        <button onclick="closeModal()" class="close-btn">關閉</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
