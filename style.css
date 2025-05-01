@@ -1,3 +1,4 @@
+/* 基本設定 */
 body, html {
     margin: 0;
     padding: 0;
@@ -48,7 +49,7 @@ body, html {
 }
 
 .logo-right {
-    font-size: 18px;
+    font-size: 16px;
     color: #007BCE;
     white-space: nowrap;
     font-weight: 500;
@@ -101,61 +102,125 @@ body, html {
     color: #003366;
 }
 
-input[type="text"], input[type="password"] {
+/* 欄位統一樣式 */
+form label {
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+    margin-top: 18px;
+    display: block;
+}
+
+form input[type="text"],
+form input[type="password"] {
     width: 100%;
+    font-size: 15px;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    height: 40px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
+/* 使用者代號欄（含眼睛圖示） */
+.input-eye-box {
+    position: relative;
+}
+
+.input-eye-box input {
+    width: 100%;
+    padding-right: 36px;
+    font-size: 15px;
+}
+
+.input-eye-box .eye {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* 使用者密碼 + 忘記密碼連結 */
+.input-group {
+    margin-bottom: 12px;
+}
+
+.input-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.forgot-link {
+    font-size: 13px;
+    color: #007BCE;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* 驗證碼區塊 */
 .captcha-box {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .captcha-box input {
     flex: 1;
+    font-size: 15px;
+    height: 40px;
 }
 
 .captcha-img {
-    width: 80px;
-    height: 38px;
-    margin-left: 10px;
-    background: #fdd835;
+    background-color: #fdd835;
     color: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-weight: bold;
+    padding: 8px 12px;
     font-family: monospace;
     font-size: 18px;
-    font-weight: bold;
-    border: 1px solid #999;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #aaa;
 }
 
 .refresh-btn {
-    margin-left: 5px;
-    height: 38px;
-    padding: 0 10px;
-    background-color: #eee;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    background: #f2f2f2;
+    border: none;
+    border-radius: 6px;
+    font-size: 20px;
     cursor: pointer;
-    font-size: 16px;
 }
 
+/* 登入按鈕 */
 .login-btn {
     width: 100%;
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    height: 45px;
+    border: none;
+    border-radius: 6px;
     background-color: #007BCE;
     color: white;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
 }
 
 /* Footer */
@@ -202,7 +267,7 @@ footer {
     text-align: center;
 }
 
-/* Modal */
+/* Modal 彈窗 */
 .modal {
     display: none;
     position: fixed;

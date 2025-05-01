@@ -9,6 +9,17 @@ function generateCaptcha() {
     captcha.textContent = code;
 }
 
+function toggleVisibility(id, el) {
+    const input = document.getElementById(id);
+    if (input.type === "password") {
+        input.type = "text";
+        el.textContent = "👁️";
+    } else {
+        input.type = "password";
+        el.textContent = "🙈";
+    }
+}
+
 function openModal() {
     document.getElementById('modal').style.display = 'flex';
 }
@@ -17,5 +28,12 @@ function closeModal() {
     document.getElementById('modal').style.display = 'none';
 }
 
-window.onload = generateCaptcha;
+function openForgotModal() {
+    document.getElementById('forgotModal').style.display = 'flex';
+}
 
+function closeForgotModal() {
+    document.getElementById('forgotModal').style.display = 'none';
+}
+
+window.onload = generateCaptcha;
