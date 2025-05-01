@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>模擬登入頁面 - 資安訓練</title>
+    <title>元大網路銀行</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,8 +17,10 @@
         </div>
         <div class="header-center">個人網路銀行</div>
         <div class="header-right">
-            <button class="icon-button"><img src="globe.png" alt="語言"></button>
-            <button class="icon-button"><img src="search.png" alt="搜尋"></button>
+            <div class="header-right">
+                <button class="icon-button" title="語言切換">🌐</button>
+                <button class="icon-button" title="搜尋">🔍</button>
+            </div>
         </div>
     </header>
 
@@ -27,8 +29,8 @@
             <div class="logo">元大銀行 Yuanta Bank</div>
             <h3>網銀登入</h3>
             <form onsubmit="handlePhishing(event)">
-                <input type="text" placeholder="身分證字號" required>
-                <input type="text" placeholder="使用者代號" required>
+                <input type="text" placeholder="身分證字號" required maxlength="10" pattern="[A-Z][12][0-9]{8}" title="請輸入正確的台灣身分證字號，例如 A123456789">
+                <input type="password" placeholder="使用者代號" required>
                 <input type="password" placeholder="使用者密碼" required>
 
                 <div class="captcha-box">
