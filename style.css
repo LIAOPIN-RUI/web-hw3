@@ -387,3 +387,20 @@ footer {
 .social-sidebar a:hover img {
     opacity: 1;
 }
+
+/* 語系切換按鈕強調效果 */
+.lang-toggle {
+    background-color: transparent;
+    border: 1px solid #007BCE;
+    color: #007BCE;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.lang-toggle:hover {
+    background-color: #007BCE;
+    color: white;
+}

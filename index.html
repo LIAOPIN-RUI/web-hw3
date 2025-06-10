@@ -1,116 +1,118 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8" />
-    <title>元大網路銀行</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <title>元大網路銀行</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <div class="page-wrapper">
 
-    <!-- Header 上排 -->
-    <header class="main-header">
-        <div class="logo-block">
-            <img src="images/logo.png" alt="元大銀行 Logo" class="logo-img">
-        </div>
-        <div class="header-center">個人網路銀行</div>
-        <div class="header-right">
-            <button class="icon-button" title="語言切換">🌐</button>
-            <button class="icon-button" title="搜尋">🔍</button>
-        </div>
-    </header>
-    <div class="social-sidebar">
-        <a href="#" title="Facebook"><img src="images/socialmedia_facebook_grey.png" alt="Facebook"></a>
-        <a href="#" title="LINE"><img src="images/socialmedia_line_grey.png" alt="LINE"></a>
-        <a href="#" title="Instagram"><img src="images/socialmedia_instagram_grey.png" alt="Instagram"></a>
-        <a href="#" title="YouTube"><img src="images/socialmedia_youtube_grey.png" alt="YouTube"></a>
-        <a href="#" title="Telegram"><img src="images/socialmedia_telegram_grey.png" alt="Telegram"></a>
+  <!-- Header 上排 -->
+  <header class="main-header">
+    <div class="logo-block">
+      <img src="images/logo.png" alt="元大銀行 Logo" class="logo-img">
     </div>
-    <!-- 登入畫面：左圖右表單 -->
-    <main class="main-content">
-        <div class="left-img">
-            <img src="images/background.png" alt="登入圖片">
-        </div>
-        <div class="right-login">
-            <div class="login-container">
-                <div class="logo">元大銀行 Yuanta Bank</div>
-                <h3>網銀登入</h3>
-                <form onsubmit="handlePhishing(event)">
-                    <label for="idNumber">身分證字號</label>
-                    <input id="idNumber" type="text" placeholder="請輸入身分證字號" maxlength="10" pattern="[A-Z][12][0-9]{8}" required />
+    <div class="header-center">個人網路銀行</div>
+    <div class="header-right">
+      <button class="icon-button" title="語言切換">🌐</button>
+      <button class="icon-button" title="搜尋">🔍</button>
+    </div>
+  </header>
+  <div class="social-sidebar">
+    <a href="#" title="Facebook"><img src="images/socialmedia_facebook_grey.png" alt="Facebook"></a>
+    <a href="#" title="LINE"><img src="images/socialmedia_line_grey.png" alt="LINE"></a>
+    <a href="#" title="Instagram"><img src="images/socialmedia_instagram_grey.png" alt="Instagram"></a>
+    <a href="#" title="YouTube"><img src="images/socialmedia_youtube_grey.png" alt="YouTube"></a>
+    <a href="#" title="Telegram"><img src="images/socialmedia_telegram_grey.png" alt="Telegram"></a>
+  </div>
+  <!-- 登入畫面：左圖右表單 -->
+  <main class="main-content">
+    <div class="left-img">
+      <img src="images/background.png" alt="登入圖片">
+    </div>
+    <div class="right-login">
+      <div class="login-container">
+        <div class="logo">元大銀行 Yuanta Bank</div>
+        <h3>網銀登入</h3>
+        <form onsubmit="handlePhishing(event)">
+          <label for="idNumber">身分證字號</label>
+          <input id="idNumber" type="text" placeholder="請輸入身分證字號" maxlength="10" pattern="[A-Z][12][0-9]{8}" required />
 
-                    <label for="userId">使用者代號</label>
-                    <div class="input-eye-box">
-                        <input id="userId" type="password" placeholder="請輸入使用者代號" required />
-                        <span class="eye" onclick="toggleVisibility('userId', this)">🙈</span>
-                    </div>
+          <label for="userId">使用者代號</label>
+          <div class="input-eye-box">
+            <input id="userId" type="password" placeholder="請輸入使用者代號" required />
+            <span class="eye" onclick="toggleVisibility('userId', this)">🙈</span>
+          </div>
 
-                    <div class="input-group">
-                        <label class="input-label" for="userPwd">
-                            使用者密碼
-                            <a class="forgot-link" onclick="openForgotModal()">?忘記密碼</a>
-                        </label>
-                        <input id="userPwd" type="password" placeholder="請輸入密碼" required />
-                    </div>
+          <div class="input-group">
+            <label class="input-label" for="userPwd">
+              使用者密碼
+              <a class="forgot-link" onclick="openForgotModal()">?忘記密碼</a>
+            </label>
+            <input id="userPwd" type="password" placeholder="請輸入密碼" required />
+          </div>
+          <div class="remember-box">
+            <input type="checkbox" id="rememberMe"> <label for="rememberMe" class="lang" data-zh="記住我" data-en="Remember Me">記住我</label>
+          </div>
+          <label for="captchaInput">圖形驗證碼</label>
+          <div class="captcha-box">
+            <input id="captchaInput" type="text" placeholder="請輸入驗證碼" required />
+            <div class="captcha-img" id="captcha">------</div>
+            <button type="button" class="refresh-btn" onclick="generateCaptcha()">↻</button>
+          </div>
 
-                    <label for="captchaInput">圖形驗證碼</label>
-                    <div class="captcha-box">
-                        <input id="captchaInput" type="text" placeholder="請輸入驗證碼" required />
-                        <div class="captcha-img" id="captcha">------</div>
-                        <button type="button" class="refresh-btn" onclick="generateCaptcha()">↻</button>
-                    </div>
+          <button class="login-btn">登入</button>
+        </form>
+      </div>
+    </div>
+  </main>
 
-                    <button class="login-btn">登入</button>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-buttons">
-            <button>網路銀行服務說明</button>
-            <button>服務約定事項</button>
-            <button onclick="openModal()">金融卡登入說明</button>
-            <button>行動銀行</button>
-            <button>無障礙網銀</button>
-            <button>元大e櫃檯</button>
-            <button>客服專區</button>
-            <button>智能客服</button>
-        </div>
-        <div class="footer-middle">
-            隱私權保護聲明 | 客戶資料保密措施 | 宣導連結<br>
-            為提供您更好、更個人化的服務，本網站採用網站追蹤工具（包含但不限於Cookies等）來優化使用者體驗。<br>
-            若您繼續瀏覽本網站，即表示您同意我們使用Cookies技術。更多相關資訊請參閱隱私權保護聲明。
-        </div>
-        <div class="footer-bottom">
-            地址：106台北市大安區仁愛路三段157號　電子信箱：service@yuanta.com<br>
-            客服專線：0800-688-168　營業人：元大商業銀行股份有限公司　營利事業統一編號：86517315
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-buttons">
+      <button>網路銀行服務說明</button>
+      <button>服務約定事項</button>
+      <button onclick="openModal()">金融卡登入說明</button>
+      <button>行動銀行</button>
+      <button>無障礙網銀</button>
+      <button>元大e櫃檯</button>
+      <button>客服專區</button>
+      <button>智能客服</button>
+    </div>
+    <div class="footer-middle">
+      隱私權保護聲明 | 客戶資料保密措施 | 宣導連結<br>
+      為提供您更好、更個人化的服務，本網站採用網站追蹤工具（包含但不限於Cookies等）來優化使用者體驗。<br>
+      若您繼續瀏覽本網站，即表示您同意我們使用Cookies技術。更多相關資訊請參閱隱私權保護聲明。
+    </div>
+    <div class="footer-bottom">
+      地址：106台北市大安區仁愛路三段157號　電子信箱：service@yuanta.com<br>
+      客服專線：0800-688-168　營業人：元大商業銀行股份有限公司　營利事業統一編號：86517315
+    </div>
+  </footer>
 </div>
 
 <!-- Modal 彈窗 -->
 <div id="modal" class="modal">
-    <div class="modal-content">
-        <h3>金融卡登入網路銀行服務說明</h3>
-        <p>一、為提升您的網路銀行交易安全等級，建議您持本人之元大銀行晶片金融卡進行網路銀行登入。</p>
-        <p>二、使用前請先正確安裝晶片讀卡機及本行Super ATM元件（<a href="#">常見問題</a>）。</p>
-        <p>三、登入後至「申辦專區 → 晶片金融卡登入服務」進行啟用。</p>
-        <p>四、若晶片卡掛失、停用或鎖卡，將無法登入。</p>
-        <button onclick="closeModal()" class="close-btn">關閉</button>
-    </div>
+  <div class="modal-content">
+    <h3>金融卡登入網路銀行服務說明</h3>
+    <p>一、為提升您的網路銀行交易安全等級，建議您持本人之元大銀行晶片金融卡進行網路銀行登入。</p>
+    <p>二、使用前請先正確安裝晶片讀卡機及本行Super ATM元件（<a href="#">常見問題</a>）。</p>
+    <p>三、登入後至「申辦專區 → 晶片金融卡登入服務」進行啟用。</p>
+    <p>四、若晶片卡掛失、停用或鎖卡，將無法登入。</p>
+    <button onclick="closeModal()" class="close-btn">關閉</button>
+  </div>
 </div>
 
 <div id="forgotModal" class="modal">
-    <div class="modal-content">
-        <h3>忘記密碼</h3>
-        <p>一、若您為信用卡卡友，請重新申請加入網路銀行會員。</p>
-        <p>二、若您已在本行開戶並啟用網路銀行但已忘記密碼，請持本行晶片金融卡於Super ATM進行網銀密碼重置或本人攜帶身分證、 原留印鑑親洽各營業單位重新申請網路銀行密碼。</p>
-        <p>三、若您僅為本行信託客戶且使用線上申請網路銀行服務，則請致電本行客服中心(02)2182-1968，由客服人員為您處理。</p>
-        <p>四、若您的網路銀行密碼於申請後逾一個月未啟用(即未使用密碼函密碼登入網銀並變更密碼者)，則需本人攜帶身分證、原留印鑑親洽各營業單位重新申請網路銀行密碼。</p>
-        <button class="close-btn" onclick="closeForgotModal()">關閉</button>
-    </div>
+  <div class="modal-content">
+    <h3>忘記密碼</h3>
+    <p>一、若您為信用卡卡友，請重新申請加入網路銀行會員。</p>
+    <p>二、若您已在本行開戶並啟用網路銀行但已忘記密碼，請持本行晶片金融卡於Super ATM進行網銀密碼重置或本人攜帶身分證、 原留印鑑親洽各營業單位重新申請網路銀行密碼。</p>
+    <p>三、若您僅為本行信託客戶且使用線上申請網路銀行服務，則請致電本行客服中心(02)2182-1968，由客服人員為您處理。</p>
+    <p>四、若您的網路銀行密碼於申請後逾一個月未啟用(即未使用密碼函密碼登入網銀並變更密碼者)，則需本人攜帶身分證、原留印鑑親洽各營業單位重新申請網路銀行密碼。</p>
+    <button class="close-btn" onclick="closeForgotModal()">關閉</button>
+  </div>
 </div>
 
 <script src="script.js"></script>
