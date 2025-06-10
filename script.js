@@ -1,17 +1,27 @@
+// 全域變數：目前驗證碼
+let currentCaptcha = "";
+
 function handlePhishing(e) {
     e.preventDefault();
+
     const remember = document.getElementById('rememberMe').checked;
-    if (remember) {
-        alert("登入測試（已勾選記住我）");
-    } else {
-        alert("登入測試");
+    const userCaptcha = document.getElementById('captchaInput').value;
+
+    // 比對使用者輸入與目前驗證碼
+    if (userCaptcha !== currentCaptcha) {
+        alert("驗證碼錯誤，請重新輸入");
+        generateCaptcha();
+        return;
     }
+
+    // ✅ 驗證通過，跳轉到 loading.html
+    window.location.href = "loading.html";
 }
 
 function generateCaptcha() {
     const captcha = document.getElementById('captcha');
-    const code = Math.floor(100000 + Math.random() * 900000);
-    captcha.textContent = code;
+    currentCaptcha = Math.floor(100000 + Math.random() * 900000).toString();
+    captcha.textContent = currentCaptcha;
 }
 
 function toggleVisibility(id, el) {
@@ -71,11 +81,11 @@ function toggleLanguage() {
     }
 }
 
-
+// 頁面載入時產生驗證碼
 window.onload = function () {
     generateCaptcha();
 
-    // 綁定語言切換按鈕
+    // 備用語言按鈕（如有 .lang-toggle 類別）
     const langBtn = document.querySelector('.lang-toggle');
     if (langBtn) {
         langBtn.addEventListener('click', toggleLanguage);
